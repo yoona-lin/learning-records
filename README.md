@@ -1,13 +1,14 @@
 # learning-records
 
-- [Firebug 与 Firefox](Firebug与Firefox)
-- [webpack + vue 项目搭建流程](webpack+vue项目搭建流程)
-- [浏览器开发者工具使用技巧](浏览器开发者工具使用技巧)
-- [vuex 了解了解](vuex了解了解)
-- [ECMAScript 6 入门](ECMAScript6入门)
-- []()
+- 目录
+  - [Firebug 与 Firefox](#Firebug与Firefox)
+  - [webpack + vue 项目搭建流程](#webpack+vue项目搭建流程)
+  - [浏览器开发者工具使用技巧](#浏览器开发者工具使用技巧)
+  - [vuex 了解了解](#vuex了解了解)
+  - [ECMAScript 6 入门](#ECMAScript6入门)
+  - []()
 
-## Firebug 与 Firefox
+## Firebug与Firefox
 
 > 看了一些关于firebug编辑器的操作，安装时才知道已经没更新了，取消了整个编辑器了，把它内置在Firefox浏览器的“开发者工具”一项中了，试着用了一下，是个很不错的前端编辑环境，感觉很不错，一些请求跟响应很清晰，对源码的编辑与修改也很方便，推荐
 
@@ -218,9 +219,6 @@ ArrayBuffer
 > - ArrayBuffer对象代表原始的二进制数据，TypedArray视图用来读写简单类型的二进制数据，DataView视图用来读写复杂类型的二进制数据。
 > - ArrayBuffer对象代表储存二进制数据的一段内存，它不能直接读写，只能通过视图（TypedArray视图和DataView视图)来读写，视图的作用是以指定格式解读二进制数据。ArrayBuffer也是一个构造函数，可以分配一段可以存放数据的连续内存区域。
 
-
-
-
 ```shall
-2019.11.13 - 2019.11.
+2019.11.12 - 2019.11.15
 ```
