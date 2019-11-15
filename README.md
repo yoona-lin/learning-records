@@ -2,7 +2,7 @@
 
 - 目录
   - [Firebug 与 Firefox](#Firebug与Firefox)
-  - [webpack + vue 项目搭建流程](#webpack+vue项目搭建流程)
+  - [webpack 与 vue 项目搭建流程](#webpack与vue项目搭建流程)
   - [浏览器开发者工具使用技巧](#浏览器开发者工具使用技巧)
   - [vuex 了解了解](#vuex了解了解)
   - [ECMAScript 6 入门](#ECMAScript6入门)
@@ -16,7 +16,7 @@
 2019.10.29
 ```
 
-## webpack+vue项目搭建流程
+## webpack与vue项目搭建流程
 
 > 慕课网址：https://www.imooc.com/learn/935
 
@@ -56,6 +56,8 @@
 ```
 
 ## ECMAScript6入门
+
+> 阮一峰老师的教材：https://es6.ruanyifeng.com/
 
 let 与 const 命令
 > let 声明变量的有效域情况，let声明的变量只在它所在的代码块有效，不存在变量提升
@@ -221,4 +223,33 @@ ArrayBuffer
 
 ```shall
 2019.11.12 - 2019.11.15
+```
+
+## github的Action学习
+
+> 阮一峰老师的日记：http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html
+
+> GitHub Actions 是什么？
+> - 大家知道，持续集成由很多操作组成，比如抓取代码、运行测试、登录远程服务器，发布到第三方服务等等。GitHub 把这些操作就称为 actions。
+> - 很多操作在不同项目里面是类似的，完全可以共享。GitHub 注意到了这一点，想出了一个很妙的点子，允许开发者把每个操作写成独立的脚本文件，存放到代码仓库，使得其他开发者可以引用。
+> - 如果你需要某个 action，不必自己写复杂的脚本，直接引用他人写好的 action 即可，整个持续集成过程，就变成了一个 actions 的组合。这就是 GitHub Actions 最特别的地方。
+
+> GitHub Actions 有一些自己的术语。
+> - （1）workflow （工作流程）：持续集成一次运行的过程，就是一个 workflow。
+> - （2）job （任务）：一个 workflow 由一个或多个 jobs 构成，含义是一次持续集成的运行，可以完成多个任务。
+> - （3）step（步骤）：每个 job 由多个 step 构成，一步步完成。
+> - （4）action （动作）：每个 step 可以依次执行一个或多个命令（action）。
+
+> 看不懂啊
+
+> 实例
+> - 第一步，这个示例需要将构建成果发到 GitHub 仓库，因此需要 GitHub 密钥。按照官方文档，生成一个密钥。然后，将这个密钥储存到当前仓库的Settings/Secrets里面。
+> - 第二步，本地计算机使用create-react-app，生成一个标准的 React 应用。然后，打开package.json文件，加一个homepage字段，表示该应用发布后的根目录
+> - 第三步，在这个仓库的.github/workflows目录，生成一个 workflow 文件，名字可以随便取，这个示例是ci.yml。
+> - 第四步，保存上面的文件后，将整个仓库推送到 GitHub。GitHub 发现了 workflow 文件以后，就会自动运行。你可以在网站上实时查看运行日志，日志默认保存30天。等到 workflow 运行结束，访问 GitHub Page，会看到构建成果已经发上网了。以后，每次修改后推送源码，GitHub Actions 都会自动运行，将构建产物发布到网页。
+
+> 还是不懂，等看看有没有视频教程
+
+```shall
+2019.11.16
 ```
