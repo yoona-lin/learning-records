@@ -16,7 +16,7 @@
 2019.10.29
 ```
 
-## webpack + vue 项目搭建流程
+## webpack+vue项目搭建流程
 
 > 慕课网址：https://www.imooc.com/learn/935
 
@@ -41,7 +41,7 @@
 2019.11.05
 ```
 
-## vuex 了解了解
+## vuex了解了解
 
 > https://vuex.vuejs.org/zh/
 
@@ -55,7 +55,7 @@
 2019.11.12
 ```
 
-## ECMAScript 6 入门
+## ECMAScript6入门
 
 let 与 const 命令
 > let 声明变量的有效域情况，let声明的变量只在它所在的代码块有效，不存在变量提升
