@@ -6,6 +6,9 @@
   - [浏览器开发者工具使用技巧](#浏览器开发者工具使用技巧)
   - [vuex 了解了解](#vuex了解了解)
   - [ECMAScript 6 入门](#ECMAScript6入门)
+  - [github的Action学习](#github的Action学习)
+  - [Ajax全接触](#Ajax全接触)
+  - []()
   - []()
 
 ## Firebug与Firefox
@@ -252,4 +255,237 @@ ArrayBuffer
 
 ```shall
 2019.11.16
+```
+
+## Ajax全接触
+
+> Ajax全接触: https://imooc.com/learn/250
+
+AJAX
+> - AJAX:Asynchronous and JavaScript and XML（异步的JavaScript 和 XML）
+> - AJAX不是某种编程语言，是一种在无需加载整个网页的情况下局部更新部分网页的技术
+> - 正常情况下更新与提交表单时都要重新加载整个页面
+
+异步
+> - XMLHTTPRequest实现前台与服务器之间的数据交互
+> - 运用HTML与CSS来实现页面，表达展示信息
+> - 运用XMLHTTPRequest和Web服务器来进行数据的异步交互
+> - 运用JavaScript操作DOM，实现动态局部更新刷新
+
+XMLHTTPRequest
+> - 初始化对象：var request = new XMLHTTPTRequest();
+> - 考虑兼容性
+```javascript
+    var request;
+    if(window.XMLHttpRequest){
+      request = new XMLHttpRequest();//IE+，Firefox，Chrome，Opera、、、
+    }else{
+      request = new ActionXObject("Microsoft.XMLHTTP");//IE6,IE5
+    }
+```
+
+Http
+> - http是计算机通过网络进行通信的规则
+> - HTTP是一种无状态协议，不建立持久的连接
+
+> - 一个完整的HTTP请求过程，通常有下面7个步骤
+> - 1.建立TCP连接
+> - 2.Web浏览器先Web服务器发送请求命令
+> - 3.Web浏览器发送请求头信息
+> - 4.Web服务器应答
+> - 5.Web服务器发送应答头信息
+> - 6.Web服务器向浏览器发送数据
+> - 7.Web服务器关闭TCP连接
+
+> - HTTP请求
+> - 一个HTTP请求一般由四部分组成
+> - 1.HTTP请求的方法或动作，比如是GET还是POST请求
+> - 2.正在请求的URL
+> - 3.请求头，包含一些客户端环境信息，身份验证信息等（请求头与请求体之间有个空行）
+> - 4.请求体，也就是请求正文，请求正文包含客户提交的查询字符串信息，表单信息等等
+```
+    GET /Protocols/rfc2616/rfc2616-sec5.html HTTP/1.1
+    Host: www.w3.org
+    Connection: keep-alive
+    Cache-Control: max-age=0
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+    User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36
+    Referer: https://www.google.com.hk/
+    Accept-Encoding: gzip,deflate,sdch
+    Accept-Language: zh-CN,zh;q=0.8,en;q=0.6
+    Cookie: authorstyle=yes
+    If-None-Match: "2cc8-3e3073913b100"
+    If-Modified-Since: Wed, 01 Sep 2004 13:24:52 GMT
+
+    name=qiu&age=25
+```
+> - GET：一般用于信息获取，信息查询，所以对服务器信息安全；使用URL传递参数，但参数所有人可见；对所发信息数量也有限制，一般在2000个字符
+> - POST：一般用于修改服务器上的资源，修改操作；对所发信息数量无限制
+
+> - 一个HTTP相应一般由三部分组成
+> - 1.一个数字和文字组成的状态码，用来显示请求是否成功还是失败
+> - 2.响应头，响应头也和请求头一样包含许多有用的信息，例如服务器类型、日期时间、内容类型和长度等（与相应体之间也是有一行空行）
+> - 相应体，也就是相应正文
+```
+    HTTP/1.1 200 OK
+    Date: Tue, 08 Jul 2014 05:28:43 GMT
+    Server: Apache/2
+    Last-Modified: Wed, 01 Sep 2004 13:24:52 GMT
+    ETag: "40d7-3e3073913b100"
+    Accept-Ranges: bytes
+    Content-Length: 16599
+    Cache-Control: max-age=21600
+    Expires: Tue, 08 Jul 2014 11:28:43 GMT
+    P3P: policyref="http://www.w3.org/2001/05/P3P/p3p.xml"
+    Content-Type: text/html; charset=iso-8859-1
+
+    {"name": "qiu", "age": 25}
+```
+
+> - HTTP 状态码
+> - 1XX：消息，这一类型的状态码，代表请求已被接受，需要继续处理
+> - 2XX：成功，这一类型的状态码，代表请求已成功被服务器接收、理解、并接受，如 200 OK
+> - 3XX：重定向，这类状态码代表需要客户端采取进一步的操作才能完成请求
+> - 4XX：请求错误，这类的状态码代表了客户端看起来可能发生了错误，妨碍了服务器的处理，如 404 MOT
+> - 5XX：服务器错误，这类状态码代表了服务器在处理请求的过程中有错误或者异常状态发生，也有可能是服务器意识到以当前的软硬件资源无法完成对请求的处理，如 500
+
+XMLHTTPRequest 发送请求
+```
+open(method,url,async)   //用于调用HTTP请求（发送请求方法，请求地址，是否异步操作默认true）
+send(string);  //发送请求到服务器
+
+request.open("GET","get.php",true);
+request.send();
+
+request.open("POST","get.php",true);
+request.send();  //这里是POST但是没给出参数，实际应用很少
+
+request.open("POST","get.php",true);
+request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+request.send("name=王二狗&sex=男");
+```
+
+XMLHTTPRequest 接受相应
+```
+responseText: 获得字符串形式的响应数据
+responseXML: 获得XML形式的响应数据（用的较少，大多数情况用JSON）
+status, statusText: 以数字和文本形式返回HTTP状态码
+getAllResponseHeader(): 获取所有的响应报头
+getResponseHeader(参数): 查询响应中某个字段的值
+
+readyState属性
+readyState: 响应是否成功
+0：请求为初始化，open还没有调用
+1：服务器连接已建立，open已经调用了
+2：请求已接收，接收到头信息了
+3：请求处理中，接收到响应主题了
+4：请求已完成，且响应已就绪，也就是响应完成了
+
+监听readyState属性的变化：
+
+var request = new XMLHttpRequest();
+request.open("GET", "get.php", true);
+request.send();
+//该属性每次变化时会触发
+request.onreadystatechange = function(){
+    //若响应完成且请求成功
+    if(request.readyState === 4 && request.status === 200){
+        //do something, e.g. request.responseText
+    }
+}
+```
+
+PHP
+> - 1.PHP 简介：是一种创建动态交互性站点的服务器端脚本语言。
+> - 2.PHP的作用：能够生成动态页面内容；能够创建、打开、读取、写入、删除以及关闭服务器上的文件；能够接收表单数据；能够发送并取回cookies； 能够添加删除修改数据库中的数据；能够限制用户访问网站中的某些页面
+> - 3.调试器下载：https://www.apachefriends.org/download.html
+
+JSON
+> - JSON：JavaScript 对象表示法（JavaScript Object Notation）
+> - JSON 是存储和交换文本信息的语法，类似于 XML，它采用键值对的方式来组织，易于阅读和编写，同时也易于机器的解析与生成
+> - JSON 是独立于语言的，也就是说不管什么语言，都可以解析json，只需要按照json的规则来解析就行
+
+> - json的长度比XML短，读写速度更快
+> - json可以使用JavaScript内置的方法直接进行解析，转换成JavaScript对象
+
+> JSON数据由花括号括起来，可以包含多个“名称：值”对，以逗号隔开
+```
+    {
+      "name":"lin",
+      "age":23,
+      "sex":"男",
+      "school":{
+        "sname":"广东工业大学",
+        "address":"101"
+      },
+      "array":[
+        {"one":"one","age":20},
+        {"two":"two","age":22}
+      ]
+    }
+```
+> JSON数据的“名称：值”中的值可以是多种数据类型，如：1、数字（整数或浮点数）2、字符串（在双引号中）3、逻辑值（true 或 false）4、数组（在方括号中）5、对象（在花括号中）6、null
+
+> 校验工具：https://jsonlint.com/
+
+> - JSON解析
+> - eval 和 JSON.parse
+> - 在代码中使用eval是很危险的！！特别是用他执行第三方的JSON数据（其中可能包含恶意代码）时，尽可能使用JSON.parse()方法解析字符串本身，该方法还可以捕捉JSON数据中的语法错误
+
+jQuery中的AJAX
+
+> jQuery.ajax([settings])
+```
+type：类型，“POST”或“GET”，默认为GET
+url：发送请求的地址
+data：是一个对象，连同请求发送到服务器的数据
+dataType：预设服务器返回的数据类型，如果不指定，jQuery将自动根据HTTP包MIME信息来智能判断，一般我们采用json格式，可以设置“json”
+success：是一个方法，请求成功后的回调函数，传入返回后的数据，以及包含成功代码的字符串
+error：是一个方法，请求失败是调用此函数，传入XMLHTTPRequest对象
+
+$.ajax({
+    //请求方式
+    type:'POST',
+    //发送请求的地址
+    url:'fzz.php',
+    //服务器返回的数据类型
+    
+    type:'GET',
+    //发送请求的地址以及传输的数据
+    url:'fzz.php?number'+=xxx,
+    //服务器返回的数据类型
+    
+    //下面部分一样
+    dataType:'json',
+    //发送到服务器的数据，对象必须为key/value的格式，jquery会自动转换为字符串格式
+    data:{name:xxx,age:xxx},
+    success:function(data){
+        //请求成功函数内容
+    },
+    error:function(jqXHR){
+        //请求失败函数内容
+    }
+});
+```
+
+跨域
+> - JavaScript出于安全方面的考虑，不允许跨域调用其他页面的对象，什么是跨域呢？就是因为JavaScript同源策略的限制,a.com 域名下的js无法操作 b.com 或是 c.b.com 域名下的对象
+> - 域名组成： `http://`(协议) `wwww`(子域名) . `abc.com`(主域名) : `8080`(端口号) /  `script/jquery.js`(请求资源地址) 
+> - 当协议、子域名。主域名、端口号任意一个不同时，都算作不同的域
+> - 不同域之间的相互请求资源就算是“跨域”
+
+处理跨域方式
+> - 1.代理：通过在同域名的web服务器创建一个其他域的代理,这种方式是通过后台(ASP、PHP、JAVA、ASP.NET)获取其他域名下的内容，然后再把获得内容返回到前端，这样因为在同一个域名下，所以就不会出现跨域的问题。
+> - 2.JSONP：JSONP 可用于解决主流浏览器的跨域数据访问的问题（注意：JSONP支持GET方式调用,不支持POST请求）
+> - 3.XHR2: XMLHttpRequest Level 2,HTML5提供的XMLHttpRequest Level 2已经实现了跨域访问以及其他的一些新功能（只支持HTML5，如果你是移动端开发，可以选择使用XHR2）
+```
+XHR2需要在远程服务器端添加如下代码
+header('Access-Control-Allow-Origin:*'); //*代表可访问的地址，可以设置指定域名
+header('Access-Control-Allow-Methods:POST,GET');
+```
+
+> 课程源码在上面
+
+```shall
+2019.11.19
 ```
